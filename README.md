@@ -7,7 +7,7 @@
   - While it might be tempting to index every column used in queries, it's essential to be selective. Indexes should primarily be on columns that are frequently used in the WHERE, JOIN, GROUP BY, or ORDER BY clauses.
 - Multicolumn Indexes
   - For queries filtering on multiple columns, a multicolumn index can be more effective. You can combine username, email, or any combination of columns based on frequent query patterns.
-    --CREATE INDEX idx_users_multicol ON users (username, email);
+    -CREATE INDEX idx_users_multicol ON users (username, email);
 - Partial Indexes:
   -  If certain values are queried more frequently (e.g., status = 'active'), consider using a partial index:
     - CREATE INDEX idx_users_active ON users (username) WHERE status = 'active';
