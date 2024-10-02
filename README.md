@@ -1,5 +1,19 @@
 # PostgreSQL Optimize Query
 
+#### Create sample data for test
+
+      create table orders (order_no serial primary key, order_date date);
+    
+      create table items(item_no serial not null, order_no integer, product_name varchar, descr varchar, created_ts timestamp,
+      constraint fk_items foreign key (order_no) references orders(order_no) 
+      match simple on update cascade on delete cascade);
+      
+      with order_rws as ( insert into orders(order_no, order_date) select generate_series(1, 1000000) t, now()
+      returning order_no)
+      insert into items (item_no, order_no, product_name, descr, created_ts) select generate_series(1, 4) item_no,order_no, 'product',
+      repeat('the description of the product',10), now() from order_rws;
+
+
 #### PostgreSQL table grows to a significant size, and optimizing for performance becomes crucial. Here are best practices and strategies you can use to optimize large tables in PostgreSQL
 
 ## 1. Optimize Indexing Strategy
