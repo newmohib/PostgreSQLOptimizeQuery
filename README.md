@@ -13,6 +13,19 @@
       insert into items (item_no, order_no, product_name, descr, created_ts) select generate_series(1, 4) item_no,order_no, 'product',
       repeat('the description of the product',10), now() from order_rws;
 
+      -- Check without indexing and get almost 200
+      
+      select * from orders ord join items itm on ord.order_no = itm.order_no where ord.order_no = 1000000
+      
+      -- Check with indexing
+      
+      create index idx_ord on items (order_no);
+      
+      -- Check with indexing and get almost 50
+      
+       select * from orders ord join items itm on ord.order_no = itm.order_no where ord.order_no = 1000000
+       
+
 
 #### PostgreSQL table grows to a significant size, and optimizing for performance becomes crucial. Here are best practices and strategies you can use to optimize large tables in PostgreSQL
 
