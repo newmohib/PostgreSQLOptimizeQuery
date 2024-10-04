@@ -112,7 +112,10 @@
 - For high traffic, use connection pooling to handle multiple client requests more efficiently. A tool like pgBouncer can help manage connections by reducing the overhead of opening and closing connections frequently.
 
 ## 9. Denormalization
-- In some cases, a denormalized table can be more efficient for read-heavy workloads. This involves storing redundant data to avoid expensive JOIN operations. For example, if you frequently join the users table with another table, consider adding some of that information directly to the users table. However, be cautious as this can increase data redundancy and complicate updates.
+- In some cases, a denormalized table can be more efficient for read-heavy workloads. This involves storing redundant data to avoid expensive JOIN operations. For example, if you frequently join the users table with another table, consider adding some of that information directly to the user's table. However, be cautious as this can increase data redundancy and complicate updates.
+
+## 10. Indexing Foreign keys
+- 
 
 ## Performance Comparison (with and without optimization)
 - Let's consider a query that fetches a user profile by username from a table of 1 million rows.
@@ -120,7 +123,7 @@
   - The query may take several seconds, as PostgreSQL will perform a full table scan.
   - Estimated time: 2-5 seconds depending on the hardware and data structure.
 - With optimization
-  - The same query may complete in milliseconds since PostgreSQL will use the index and avoid scanning the entire table.
+  - The same query may be completed in milliseconds since PostgreSQL will use the index and avoid scanning the entire table.
   - Estimated time: < 100 milliseconds.
 
 ## Conclusion
