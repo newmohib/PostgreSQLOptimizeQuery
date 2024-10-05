@@ -24,7 +24,10 @@
       -- Check with indexing and get almost 50
       
        select * from orders ord join items itm on ord.order_no = itm.order_no where ord.order_no = 1000000
-       
+
+       -- check the total data size of table
+       \di+;
+       \dt+;
 
 
 #### PostgreSQL table grows to a significant size, and optimizing for performance becomes crucial. Here are best practices and strategies you can use to optimize large tables in PostgreSQL
