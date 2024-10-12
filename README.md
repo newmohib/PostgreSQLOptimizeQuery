@@ -138,3 +138,22 @@
 - Archiving old data and denormalizing where appropriate.
 
 These techniques combined will help ensure that your queries remain fast, even as your data continues to grow.
+
+
+### Cluster Command
+
+- The cluster command works by making a whole new copy of the table, sorted by the index you asked for. once built, the original copy of the data is dropped
+- cluster test_table using idx_random;
+- 
+### fillfactor
+
+-  the page size is fixed at 8 KB (8192 bytes). Each page can store multiple rows of data, and the maximum number of rows or the amount of data that can fit on a page depends on several factors
+-  
+        -- Create a new table with fillfactor set to 80%
+      CREATE TABLE my_table_with_fillfactor (
+          id SERIAL PRIMARY KEY,
+          data TEXT
+      ) WITH (fillfactor = 80);
+   
+-
+### 
